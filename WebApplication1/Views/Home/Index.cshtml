@@ -50,7 +50,7 @@
 }
 
 <div class="content">
-    @foreach (var post in Model) {
+    @foreach (var post in Model.Where(p => p.Date > DateTime.Now)) {
         <div class="card">
             <a href="#popup-@post.ID" class="card-link">
                 <img src="@post.Post_img" alt="Board game image">
