@@ -7,37 +7,43 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/card-Approve.css" />
 }
-
+<div class = "request01">
+<h2>In Party</h2></div>
+  
 <div class="content">
-    <div class="header-title">In Party</div>
+      
 </div>
 <div class="content">
-    @foreach (var joinEvent in Model.Item1) {
-        @if (joinEvent.Status == "Approve") {
-            <div class="card">
-                <img src="https://via.placeholder.com/150" alt="User Avatar">
-                <h3>@(ViewBag.Usernames.ContainsKey(joinEvent.UserID) ? ViewBag.Usernames[joinEvent.UserID] : "Unknown User")</h3>
-                @if (ViewBag.userId != joinEvent.UserID) {
-                    <p>Status: @joinEvent.Status</p>
-                    <form asp-controller="Post" asp-action="Out" method="post">
-                        <input type="hidden" name="id" value="@joinEvent.Join_ID" />
-                        <button type="submit" class="deny-btn">Out</button>
-                    </form>
-                } else {
-                    <h2>Owner</h2>
-                }
-            </div>
+    @foreach (var joinEvent in Model.Item1)
+     {
+        @if(joinEvent.Status == "Approve"){          
+          <div class="card">
+            <img src="https://via.placeholder.com/150" alt="User Avatar">
+            <h3>@(ViewBag.Usernames.ContainsKey(joinEvent.UserID) ? ViewBag.Usernames[joinEvent.UserID] : "Unknown User")</h3>
+            @if(ViewBag.userId != joinEvent.UserID){
+                <p>Status: @joinEvent.Status</p>
+                <form asp-controller="Post" asp-action="Out" method="post">
+                  <input type="hidden" name="id" value="@joinEvent.Join_ID" />
+                  <button type="submit" class="deny-btn">Out</button>
+                </form>
+            }else{
+              <h2>Owner</h2>
+            }
+            
+          </div>
+          
         }
-    }
+     }
 </div>
-
-
+<div class = "request01">
+<h2>In Request</h2></div>
 <div class="content">
-      <div class="header-title">In Request</div> 
+      
 </div>
 <div class="content">
       @foreach (var joinEvent in Model.Item1)
      {
+        
         @if(joinEvent.Status == "Request"){          
           <div class="card">
             <img src="https://via.placeholder.com/150" alt="User Avatar">
@@ -48,6 +54,7 @@
                   <button type="submit" class="approve-btn">Approve</button>
               </form>
           </div>
+          
         }
      }
 </div>

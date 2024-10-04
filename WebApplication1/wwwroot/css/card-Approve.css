@@ -1,63 +1,64 @@
-* {
-    font-size: 19px; 
-}
-
 .content {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     margin-left: 100px;
     padding: 20px;
-    margin-top: 40px;
-    gap: 20px; 
+    margin-top: 60px;
+    gap: 20px;
     flex: 1;
+    
+}
+
+.request01{
+    background-color: #6373b7;
+    color: #fff;
+    text-align: center;
+    padding: 30px;
+    margin-left: 110px;
+    margin-top: 60px;
+    width: 600px;
+    border-radius: 30px;
 }
 
 .card {
     flex: 0 0 auto;
     width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    border: 3px solid #6373b7;
+    border-radius: 30px;
     padding: 10px;
+    margin-top: -120px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow behind the card */
     background-color: #fff; 
     transition: transform 0.3s, box-shadow 0.3s;
 }
-
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
-
 img {
     border-radius: 30px;
     width: 100%;
     height: auto;
     margin-bottom: 8px;
 }
-
-h3 {
+h3{
+    margin-top: 15px;
     margin-bottom: 8px;
 }
-
 .card p {
-    text-align: middle;
-    margin: 10px 0;
+    text-align: left;
+    margin: 20px;
     line-height: 1.5;
-    margin-left: 15px;
-    margin-bottom: 8px;
-    font-size: 19px;
-    font-weight: bold;
+    margin-left: 60px;
+    margin-bottom: 15px;
 }
-
 .approve-btn, .deny-btn {
-    background-color: black;
+    background-color: #6373b7;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px;
     border-radius: 5px;
     margin: 5px;
     cursor: pointer;
@@ -66,13 +67,9 @@ h3 {
 }
 
 .approve-btn:hover, .deny-btn:hover {
-    background-color: #c5c2c2;
-}
-
-.header-title {
-    font-size: 24px; 
-    font-weight: bold; 
-    margin-bottom: 5px 0; 
+    background-color: #ebe4f2;
+    color: #000;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @media (max-width: 1470px) {
@@ -90,3 +87,7 @@ h3 {
         margin-left: auto;
     }
 }
+
+  
+
+
