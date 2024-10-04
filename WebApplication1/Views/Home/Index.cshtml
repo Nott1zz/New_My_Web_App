@@ -80,6 +80,29 @@
 </script>
 
 }
+<div class="image-container">
+    <div class="slide" style="display: block;"> <!-- Display the first slide -->
+        <img src="~/img/showgame2.jpg" alt="HTML Image">
+    </div>
+    <div class="slide" style="display: none;"> <!-- Initially hidden -->
+        <img src="~/img/showgame1.jpg" alt="CSS Image">
+    </div>
+     <div class="slide" style="display: none;"> <!-- Initially hidden -->
+        <img src="~/img/showgame4.jpg" alt="jQuery Image">
+    </div>
+     <div class="slide" style="display: none;"> <!-- Initially hidden -->
+        <img src="~/img/showgame3.jpg" alt="jQuery Image">
+    </div>
+    <div class="slide" style="display: none;"> <!-- Initially hidden -->
+        <img src="~/img/showgame5.jpg" alt="jQuery Image">
+    </div>
+
+    <!-- Navigation arrows -->
+    <a class="previous" onclick="moveSlides(-1)">   
+    </a>
+    <a class="next" onclick="moveSlides(1)">
+    </a>
+</div>
 
 <div class="content">
     @foreach (var post in Model)
@@ -129,32 +152,6 @@
             </div>
         </div>
     }
-
-   <div class="image-container">
-    <div class="slide" style="display: block;"> <!-- Display the first slide -->
-        <img src="~/img/showgame2.jpg" alt="HTML Image">
-    </div>
-    <div class="slide" style="display: none;"> <!-- Initially hidden -->
-        <img src="~/img/showgame1.jpg" alt="CSS Image">
-    </div>
-     <div class="slide" style="display: none;"> <!-- Initially hidden -->
-        <img src="~/img/showgame4.jpg" alt="jQuery Image">
-    </div>
-     <div class="slide" style="display: none;"> <!-- Initially hidden -->
-        <img src="~/img/showgame3.jpg" alt="jQuery Image">
-    </div>
-    <div class="slide" style="display: none;"> <!-- Initially hidden -->
-        <img src="~/img/showgame5.jpg" alt="jQuery Image">
-    </div>
-
-    <!-- Navigation arrows -->
-    <a class="previous" onclick="moveSlides(-1)">   
-    </a>
-    <a class="next" onclick="moveSlides(1)">
-    </a>
-</div>
-
-
 
 
 </div>

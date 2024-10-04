@@ -25,7 +25,14 @@ a.card-link {
     color: inherit;
 }
  
-img {
+.card-link img{
+    border-radius: 30px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+} 
+
+.pop-image img {
     border-radius: 30px;
     width: 100%;
     height: auto;
@@ -252,15 +259,12 @@ img {
     padding: 10px 0;
 }
 
-
-
-
-
 /*SlideShow CSS*/
 .image-container {
-    width: 1200px; 
+    width: 100%; 
     position: relative;
-    margin: 40px 60px; 
+    left: 40px;
+    margin-top: 40px;
 }
 
 .slide img {
@@ -268,20 +272,4 @@ img {
     height: 300px; 
     max-height: 600px; 
     object-fit: cover; 
-}
-
-.next {
-    right: 0;
-}
-
-/* Next and previous icon design */
-
-.fa {
-    font-size: 32px;
-}
-
-.fa:hover {
-    transform: rotate(360deg);
-    transition: 1s;
-    color: white;
 }
