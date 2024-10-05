@@ -8,11 +8,28 @@
     <link rel="stylesheet" href="~/css/card-Approve.css" />
 }
 <div class = "request01">
-<h2>In Party</h2></div>
-  
-<div class="content">
-      
+<h2>In Party </h2>
 </div>
+
+
+<div class="content">
+  <p>Status : @ViewBag.post.Status</p>
+  @if(ViewBag.post.Status == "Open"){
+    <form asp-controller="Post" asp-action="Close_Status" method="post">
+        <input type="hidden" name="id" value="@ViewBag.post.ID" />
+        <button type="submit" class="approve-btn">Close</button>
+    </form>
+  }else{
+    <form asp-controller="Post" asp-action="Open_Status" method="post">
+        <input type="hidden" name="id" value="@ViewBag.post.ID" />
+        <button type="submit" class="approve-btn">Open</button>
+    </form>
+  }
+</div>
+
+<div class="content">
+</div>
+
 <div class="content">
     @foreach (var joinEvent in Model.Item1)
      {
@@ -52,6 +69,10 @@
             <form asp-controller="Post" asp-action="Approve" method="post">
                   <input type="hidden" name="id" value="@joinEvent.Join_ID" />
                   <button type="submit" class="approve-btn">Approve</button>
+              </form>
+              <form asp-controller="Post" asp-action="Deny" method="post">
+                  <input type="hidden" name="id" value="@joinEvent.Join_ID" />
+                  <button type="submit" class="approve-btn">Deny</button>
               </form>
           </div>
           

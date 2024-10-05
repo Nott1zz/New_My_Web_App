@@ -28,6 +28,8 @@ namespace WebApplication1.Models
 
         public int Participants { get; set; } = 0;
 
+        public string Status { get; set; }= string.Empty;
+
     }
 }
 

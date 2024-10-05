@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using System;
+using System.Collections.Generic;
 
 namespace WebApplication1.Controllers
 {
@@ -42,7 +44,7 @@ namespace WebApplication1.Controllers
                 }
             }
 
-            return View(obj); // Return ไปที่ view พร้อมกับโมเดลถ้า login ล้มเหลว
+            return View(obj); 
         }
 
 
@@ -57,7 +59,20 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                _db.User.Add(obj); // Ensure you're adding to the correct DbSet
+
+                List<string> items = new List<string> 
+                { 
+                    "Apple",
+                    "Banana",
+                    "Orange",
+                    "Mango",
+                    "Grapes" 
+                };
+                Random random = new Random();
+                int index = random.Next(items.Count);
+                string randomItem = items[index];
+                obj.User_Image_Url = randomItem;
+                _db.User.Add(obj); 
                 _db.SaveChanges();
             }
             catch (Exception ex)

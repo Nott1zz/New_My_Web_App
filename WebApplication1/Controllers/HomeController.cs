@@ -38,7 +38,8 @@ namespace WebApplication1.Controllers
                     Participants = p.Participants,
                     Capacity = p.Capacity,
                     Location = p.Location,
-                    Post_Detail = p.Post_Detail ?? string.Empty
+                    Post_Detail = p.Post_Detail ?? string.Empty,
+                    Status = p.Status
                 })
                 .ToList();
             
@@ -59,6 +60,7 @@ namespace WebApplication1.Controllers
                     CreatedAt = c.CreatedAt,
                     PostID = c.PostID,
                     UserID = c.UserID
+                    
                 })
                 .ToList();
 
