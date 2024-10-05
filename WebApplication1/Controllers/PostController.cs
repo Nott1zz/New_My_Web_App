@@ -73,8 +73,46 @@ namespace WebApplication1.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Open_Status(int id)
+        {
+            int? userId = HttpContext.Session.GetInt32("ID");
 
- 
+            var postInDb = _db.Post.FirstOrDefault(p => p.ID == id);
+            
+            if (postInDb == null)
+            {
+                return NotFound();
+            }
+
+            
+            postInDb.Status = "Open";
+
+            _db.SaveChanges();
+
+            return RedirectToAction("Manage_Participants", "Post", new { id = id });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Close_Status(int id)
+        {
+            int? userId = HttpContext.Session.GetInt32("ID");
+
+            var postInDb = _db.Post.FirstOrDefault(p => p.ID == id);
+            
+            if (postInDb == null)
+            {
+                return NotFound();
+            }
+
+            
+            postInDb.Status = "Close";
+            
+            _db.SaveChanges();
+
+            return RedirectToAction("Manage_Participants", "Post", new { id = id });
+        }
+
         [HttpPost]
         public async Task<IActionResult> Approve(int id)
         {
@@ -144,28 +182,30 @@ namespace WebApplication1.Controllers
         {
             int? userId = HttpContext.Session.GetInt32("ID");
 
-            
             if (userId == null)
             {
                 return Json(new { success = false, message = "User not logged in." });
             }
 
-            var joinEventInDb = _db.Join_Event.FirstOrDefault(p => p.Join_ID == id );
-            var postInDb = _db.Post.FirstOrDefault(p => p.ID == joinEventInDb.Post_ID);
-            
-            Console.WriteLine(joinEventInDb.Status);
-            
+            var joinEventInDb = _db.Join_Event.FirstOrDefault(p => p.Join_ID == id);
             if (joinEventInDb == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Join Event not found." });
             }
 
-            joinEventInDb.Status = "Deny";
-            
+            var postInDb = _db.Post.FirstOrDefault(p => p.ID == joinEventInDb.Post_ID);
+            if (postInDb == null)
+            {
+                return Json(new { success = false, message = "Post not found." });
+            }
+
+            _db.Join_Event.Remove(joinEventInDb);
             _db.SaveChanges();
 
-            return RedirectToAction("Manage_Participants", "Post", new { id = postInDb.ID });
+            return RedirectToAction("Manage_Participants", "Post", new { id = joinEventInDb.Post_ID });
         }
+
+
 
 
 
@@ -190,7 +230,15 @@ namespace WebApplication1.Controllers
 
             if (userId.HasValue)
             {   
-                if (string.IsNullOrEmpty(obj.Post_img))
+                if (string.IsNullOrEmpty(obj.Post_img) && obj.Location == "Luck and Roll")
+                {
+                    obj.Post_img = "https://flowbite.com/docs/images/examples/image-1@2x.jpg";
+                }
+                else if (string.IsNullOrEmpty(obj.Post_img) && obj.Location == "KUMO cafe & board game")
+                {
+                    obj.Post_img = "https://flowbite.com/docs/images/examples/image-1@2x.jpg";
+                }
+                else if (string.IsNullOrEmpty(obj.Post_img) && obj.Location == "KMITL Lifelong Learning Center")
                 {
                     obj.Post_img = "https://flowbite.com/docs/images/examples/image-1@2x.jpg";
                 }
@@ -198,6 +246,7 @@ namespace WebApplication1.Controllers
                 obj.Post_Detail ??= "";
                 obj.Post_by_id = userId.Value;
                 obj.Participants = 1;
+                obj.Status = "Open";
                 _db.Post.Add(obj);
                 _db.SaveChanges();
 
@@ -309,5 +358,6 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("Index");
         }
+        
     }
 }

@@ -20,5 +20,7 @@ namespace WebApplication1.Models
         [Required]
         public string Password { get; set; } = string.Empty;
 
+        public string User_Image_Url { get; set; } = string.Empty;
+
     }
 }

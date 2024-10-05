@@ -27,9 +27,8 @@
                     <p>Location : @post.Location</p>
                     <p>Date : @post.Date</p> 
                     <p>Amount : @post.Participants / @post.Capacity</p>
-                    @* <p>@post.Post_Detail</p>
-                    <p></p> *@
-                    <p>@Id</p>
+                    <p>Status : @post.Status </p>
+
             </div>
             <div class="buttnozone">
                 <a asp-controller="Post" asp-action="Edit" asp-route-id="@post.ID" class="content-button">Edit</a>

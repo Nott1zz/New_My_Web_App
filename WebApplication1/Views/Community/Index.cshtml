@@ -124,7 +124,7 @@
     </script>
 }
 
-<div class="content">
+<div class="content-Comunity">
     @foreach (var myjoin in ViewBag.myjoin) {
         @foreach (var post in Model) {
             @if(myjoin.Post_ID == post.ID){
@@ -161,7 +161,10 @@
                             </div>
                         }else{
                             <div class="buttnozone">
-                                <button class="view-button request-join" data-post-id="@post.ID">Out</button>
+                                <form asp-controller="Community" asp-action="Out" method="post">
+                                    <input type="hidden" name="id" value="@post.ID" />
+                                    <button type="submit" class="view-button">Out</button>
+                                </form>
                             </div>
                         }
                     </div>
