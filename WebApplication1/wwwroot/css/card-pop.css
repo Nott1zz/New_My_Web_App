@@ -8,6 +8,17 @@
     gap: 20px;
     flex: 1;
 }
+.content-Comunity{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    margin-left: 100px;
+    padding: 20px;
+    gap: 20px;
+    flex: 1;
+}
+
 .card {
     flex: 0 0 auto;
     width: 250px;

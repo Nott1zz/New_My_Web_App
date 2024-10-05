@@ -176,5 +176,39 @@ namespace WebApplication1.Controllers
 
             return Json(new { success = true, message = "Your request to join has been sent successfully." });
         }
+        [HttpPost]
+        public IActionResult Out(int id)
+        {
+            int? userId = HttpContext.Session.GetInt32("ID");
+
+            if (userId == null)
+            {
+                return Json(new { success = false, message = "User not logged in." });
+            }
+
+            var joinEventInDb = _db.Join_Event.FirstOrDefault(p => p.Post_ID == id && p.UserID == userId);
+            if (joinEventInDb == null)
+            {
+                return Json(new { success = false, message = "Join Event not found." });
+            }
+
+            var postInDb = _db.Post.FirstOrDefault(p => p.ID == joinEventInDb.Post_ID);
+            if (postInDb == null)
+            {
+                return Json(new { success = false, message = "Post not found." });
+            }
+
+            // ตรวจสอบไม่ให้ Participants ลดลงต่ำกว่า 0
+            if (postInDb.Participants > 0)
+            {
+                postInDb.Participants -= 1;
+            }
+
+            _db.Join_Event.Remove(joinEventInDb);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index", "Community");
+        }
+
     }
 }
